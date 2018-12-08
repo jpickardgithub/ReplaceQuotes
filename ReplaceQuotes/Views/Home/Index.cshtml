@@ -1,0 +1,50 @@
+﻿@model ReplaceQuotes.Models.TextModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (@Html.BeginForm("index", "Home", FormMethod.Post, new { model = Model }))
+{
+    <div class="container">
+        <div class="row">
+            <div id="TitleDiv" class="">
+                <h1>Replace Quotes</h1>
+                <br />
+                <h4>Replace double quotes within a string with single quotes</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="entryContainer">
+                @if (Model != null)
+                {
+                    @Html.TextAreaFor(m => m.InputText, new { @class = "entryBox" })
+                }
+                else
+                {
+                    <textarea id = "entryboxText" class="entryBox"></textarea>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <h4>Output Text</h4>
+            <div class="outputContainer">
+                <textarea id="outputBox" class="outputBox">@Model.OutputText</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" value="btnReplace">Replace Quotes</button>
+        </div>
+    </div>
+}
+
+    <button class="btnClear" value="Clear" onclick="clearText()">Clear Text</button>
+
+<script>
+    function clearText() {
+        $("#InputText").val("");
+        $("#outputBox").val("");
+        $("#outputBox").hide;
+    }    
+
+</script>
